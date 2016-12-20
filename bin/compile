@@ -129,6 +129,14 @@ if [[ -f $PROJECT_JSON_FILE ]]; then
 	PROJECT_DIR=$(dirname $PROJECT_JSON_FILE)
 fi
 
+echo "Installing OpenSSL"
+apt-get install openssl
+
+echo "Cloning MSBuild"
+mkdir "${HOME}/msbuild"
+git clone git@github.com:Microsoft/msbuild.git --branch xplat "${HOME}/msbuild"
+${HOME}/msbuild/cibuild.sh --host CoreCLR
+
 echo "Reading App Name from appsettings.json"
 PROJECT_DIR_NAME=$(basename $PROJECT_DIR)
 PROJECT_NAME=$(ruby -rjson -e "j = JSON.parse(File.open('${PROJECT_DIR}/appsettings.json','r:bom|utf-8').read); unless j['buildOptions'].nil? ; puts j['buildOptions']['outputName'];end")
