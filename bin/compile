@@ -130,7 +130,7 @@ if [[ -f $PROJECT_JSON_FILE ]]; then
 fi
 
 echo "Installing OpenSSL"
-apt-get install openssl
+apt_install openssl
 
 echo "Cloning MSBuild"
 mkdir "${HOME}/msbuild"
