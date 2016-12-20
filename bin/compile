@@ -134,7 +134,7 @@ apt_install openssl
 
 echo "Cloning MSBuild"
 mkdir "${HOME}/msbuild"
-git clone https://github.com/Microsoft/msbuild.git --branch xplat "${HOME}/msbuild"
+git clone "https://github.com/Microsoft/msbuild.git" --branch xplat "${HOME}/msbuild"
 ${HOME}/msbuild/cibuild.sh --host CoreCLR
 
 echo "Reading App Name from appsettings.json"
