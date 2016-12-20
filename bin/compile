@@ -135,7 +135,6 @@ apt_install openssl
 echo "Cloning MSBuild"
 mkdir "${HOME}/msbuild"
 git clone "https://github.com/Microsoft/msbuild.git" --branch xplat "${HOME}/msbuild"
-${HOME}/msbuild/cibuild.sh --host CoreCLR
 
 echo "Reading App Name from appsettings.json"
 PROJECT_DIR_NAME=$(basename $PROJECT_DIR)
@@ -145,7 +144,8 @@ echo "${PROJECT_NAME:=$PROJECT_DIR_NAME}"
 echo "Restoring the packages"
 CSPROJ_FILE_NAME="${PROJECT_NAME}.csproj"
 echo ${CSPROJ_FILE_NAME}
-msbuild ${CSPROJ_FILE_NAME}
+${HOME}/msbuild/cibuild.sh ${PROJECT_DIR}/${CSPROJ_FILE_NAME} --host CoreCLR
+#msbuild ${CSPROJ_FILE_NAME}
 #dotnet restore ${SRC_DIR}
 
 # configure some npm command during building
