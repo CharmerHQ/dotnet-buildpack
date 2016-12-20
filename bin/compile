@@ -135,6 +135,8 @@ PROJECT_NAME=$(ruby -rjson -e "j = JSON.parse(File.open('${PROJECT_DIR}/appsetti
 echo "${PROJECT_NAME:=$PROJECT_DIR_NAME}"
 
 echo "Restoring the packages"
+CSPROJ_FILE_NAME=PROJECT_NAME+".csproj"
+echo CSPROJ_FILE_NAME
 dotnet restore ${SRC_DIR}
 
 # configure some npm command during building
